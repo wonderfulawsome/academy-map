@@ -128,7 +128,7 @@ export default function App() {
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
 
   useState(() => {
-    fetch("https://drive.google.com/uc?export=download&id=1bvDsIcKCfUk2fy5f9QMWgynH2D_4hwAo")
+    fetch("/dong_map.geojson")
       .then(r => r.json())
       .then(data => {
         const academyKeys = new Set();
