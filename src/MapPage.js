@@ -3,7 +3,6 @@ import DeckGL from "@deck.gl/react";
 import { Map } from "react-map-gl/maplibre";
 import { GeoJsonLayer } from "@deck.gl/layers";
 import "./MapLoading.css";
-import { HashRouter, Routes, Route } from "react-router-dom";
 
 const MAP_STYLE = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
 
