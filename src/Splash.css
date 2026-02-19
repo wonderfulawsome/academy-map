@@ -1,0 +1,45 @@
+/* src/Splash.css */
+
+.splash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* 흰색 배경 */
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+  
+.splash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInOut 2s ease-in-out forwards;
+}
+  
+.splash-logo {
+    width: 150px; /* 로고 크기 조절 */
+    height: auto;
+    margin-bottom: 20px;
+    object-fit: contain;
+}
+  
+.splash-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #333333;      /* 글자색 검정 */
+    margin: 0;
+}
+  
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.9); }
+    30% { opacity: 1; transform: scale(1); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.1); }
+}

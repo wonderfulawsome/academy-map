@@ -1,0 +1,70 @@
+/* src/MapLoading.css */
+
+/* 1. 전체 화면을 덮는 반투명 다크 오버레이 */
+.map-loading-container {
+  position: absolute;
+  inset: 0;
+  /* 지도 위에 뜨므로 뒤가 살짝 비치도록 처리 (Glassmorphism) */
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100; /* 지도 컨트롤보다 위에 위치 */
+}
+
+/* 2. 책 컨테이너 */
+.book-loader {
+  position: relative;
+  width: 60px;
+  height: 40px;
+  perspective: 600px;
+  margin-bottom: 20px;
+}
+
+/* 3. 책 페이지 디자인 (화이트 라인 스타일) */
+.page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 40px;
+  
+  /* 흰색 테두리로 깔끔하게 */
+  border: 2px solid #ffffff;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0 5px 5px 0;
+  
+  /* 내부 채우기: 약간의 흰색 틴트 */
+  background: rgba(255, 255, 255, 0.05);
+  
+  transform-origin: left;
+  transform-style: preserve-3d;
+}
+
+/* 4. 페이지 넘김 애니메이션 (시간차 적용) */
+.page:nth-child(1) { animation: pageTurn 2s infinite ease-in-out 0s; z-index: 3; }
+.page:nth-child(2) { animation: pageTurn 2s infinite ease-in-out 0.15s; z-index: 2; }
+.page:nth-child(3) { animation: pageTurn 2s infinite ease-in-out 0.3s; z-index: 1; }
+
+@keyframes pageTurn {
+  0% { transform: rotateY(0deg); }
+  20% { background: rgba(255, 255, 255, 0.1); } /* 넘길 때 살짝 밝아짐 */
+  40% { transform: rotateY(-180deg); opacity: 0.8; }
+  100% { transform: rotateY(-180deg); opacity: 0; }
+}
+
+/* 5. 하단 텍스트 */
+.loading-text {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  animation: pulseText 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}

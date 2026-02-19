@@ -1,4 +1,4 @@
-const CACHE_NAME = 'academy-map-v1';
+const CACHE_NAME = 'academy-map-v2';
 const urlsToCache = ['/', '/index.html'];
 
 self.addEventListener('install', e => {

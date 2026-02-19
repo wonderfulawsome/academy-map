@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">학원명당</string>
+    <string name="title_activity_main">AcademyMap</string>
+    <string name="package_name">com.academymap.app</string>
+    <string name="custom_url_scheme">com.academymap.app</string>
+</resources>

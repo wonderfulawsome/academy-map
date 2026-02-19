@@ -1,0 +1,78 @@
+/* src/Home.css */
+
+.home-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #000000;
+    padding: 20px;
+}
+
+.main-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem; /* 간격 조금 더 확보 */
+    letter-spacing: -1px;
+    color: #888888;
+    
+    /* [핵심 수정 1] 단어 중간에 줄바꿈 방지 (한글 전용) */
+    word-break: keep-all; 
+    /* 줄 간격 조정 */
+    line-height: 1.3; 
+}
+
+/* [핵심 수정 2] 모바일 화면(폭 768px 이하)에서는 글자 크기 축소 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem; /* 3rem -> 2rem으로 축소 */
+    }
+    .sub-title {
+        font-size: 1rem; /* 서브 텍스트도 비율에 맞춰 축소 */
+        margin-bottom: 3rem;
+    }
+    .primary-button {
+        padding: 15px 40px; /* 버튼 크기도 살짝 조정 */
+        width: 100%; /* 모바일에서는 버튼을 꽉 차게 */
+        max-width: 300px;
+    }
+}
+
+.white-accent {
+    color: #FFFFFF;
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    /* 필요 시 강제로 줄바꿈을 하지 않도록 설정 */
+    white-space: nowrap; 
+}
+
+.sub-title {
+    font-size: 1.1rem;
+    color: #666666;
+    font-weight: 400;
+    margin-bottom: 5rem;
+    line-height: 1.6;
+    word-break: keep-all; /* 서브 타이틀도 단어 단위로 줄바꿈 */
+}
+
+.primary-button {
+    padding: 18px 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #000000;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); 
+}
+
+.primary-button:hover {
+    background-color: #DDDDDD;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
