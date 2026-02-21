@@ -1,13 +1,25 @@
-/* src/index.css */
-body {
+/* 화면 전체 밀림 현상 원천 차단 */
+html, body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100dvh;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* 전체 배경을 리얼 블랙으로 설정 */
-  background-color: #000000;
-  /* 기본 텍스트 색상을 화이트로 설정 */
-  color: #ffffff;
+  padding: 0;
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #F6F7FA;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 code {
