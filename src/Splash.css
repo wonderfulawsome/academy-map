@@ -1,45 +1,76 @@
-/* src/Splash.css */
-
-.splash-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    /* 흰색 배경 */
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
+/* 스플래시 스타일 */
+.splash-wrapper {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw; height: 100dvh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    background: #FCFBF8; overflow: hidden; touch-action: none;
+  }
   
-.splash-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: fadeInOut 2s ease-in-out forwards;
-}
+  .splash-bg-shape {
+    position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.4;
+    animation: floatSplash 6s infinite alternate ease-in-out;
+  }
   
-.splash-logo {
-    width: 150px; /* 로고 크기 조절 */
-    height: auto;
-    margin-bottom: 20px;
-    object-fit: contain;
-}
+  .shape-1 { width: 250px; height: 250px; background: #3D7CA6; top: 10%; left: -50px; }
+  .shape-2 { width: 300px; height: 300px; background: #EAE6DF; bottom: -50px; right: -50px; animation-delay: -3s; }
   
-.splash-text {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    color: #333333;      /* 글자색 검정 */
-    margin: 0;
-}
+  @keyframes floatSplash {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(40px) scale(1.1); }
+  }
   
-@keyframes fadeInOut {
-    0% { opacity: 0; transform: scale(0.9); }
-    30% { opacity: 1; transform: scale(1); }
-    80% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(1.1); }
-}
+  .splash-content-box { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; }
+  
+  .splash-logo-container { margin-bottom: 20px; }
+  
+  .splash-brand-logo {
+    width: clamp(100px, 25vw, 150px); height: auto;
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.08)); opacity: 0;
+    animation: revealLogo 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  
+  @keyframes revealLogo {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px); filter: blur(10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+  }
+  
+  .splash-brand-name {
+    font-family: 'Pretendard', sans-serif; font-weight: 800; color: #2C2A28;
+    font-size: clamp(24px, 6vw, 36px); letter-spacing: -0.5px; margin: 0; opacity: 0;
+    animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+  }
+  
+  .splash-brand-sub {
+    font-family: 'Pretendard', sans-serif; font-weight: 500; color: #8A857E;
+    font-size: clamp(13px, 3.5vw, 16px); margin: 8px 0 0 0; opacity: 0;
+    animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s, expandTracking 1.5s ease-out forwards 0.5s;
+  }
+  
+  @keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes expandTracking {
+    0% { letter-spacing: 0px; }
+    100% { letter-spacing: 2px; }
+  }
+  
+  .splash-loader {
+    position: absolute; bottom: 15%; width: 120px; height: 3px; background: #EAE6DF;
+    border-radius: 3px; overflow: hidden; opacity: 0;
+    animation: fadeInLoader 0.5s ease forwards 0.8s;
+  }
+  
+  .splash-loader-bar {
+    width: 0%; height: 100%; background: #3D7CA6; border-radius: 3px;
+    animation: loadingFill 2s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.8s;
+  }
+  
+  @keyframes fadeInLoader { to { opacity: 1; } }
+  
+  @keyframes loadingFill {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+  }
