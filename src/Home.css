@@ -1,78 +1,61 @@
-/* src/Home.css */
-
 .home-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #000000;
-    padding: 20px;
-}
-
-.main-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem; /* 간격 조금 더 확보 */
-    letter-spacing: -1px;
-    color: #888888;
-    
-    /* [핵심 수정 1] 단어 중간에 줄바꿈 방지 (한글 전용) */
-    word-break: keep-all; 
-    /* 줄 간격 조정 */
-    line-height: 1.3; 
-}
-
-/* [핵심 수정 2] 모바일 화면(폭 768px 이하)에서는 글자 크기 축소 */
-@media (max-width: 768px) {
-    .main-title {
-        font-size: 2rem; /* 3rem -> 2rem으로 축소 */
-    }
-    .sub-title {
-        font-size: 1rem; /* 서브 텍스트도 비율에 맞춰 축소 */
-        margin-bottom: 3rem;
-    }
-    .primary-button {
-        padding: 15px 40px; /* 버튼 크기도 살짝 조정 */
-        width: 100%; /* 모바일에서는 버튼을 꽉 차게 */
-        max-width: 300px;
-    }
-}
-
-.white-accent {
-    color: #FFFFFF;
-    font-weight: 800;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    /* 필요 시 강제로 줄바꿈을 하지 않도록 설정 */
-    white-space: nowrap; 
-}
-
-.sub-title {
-    font-size: 1.1rem;
-    color: #666666;
-    font-weight: 400;
-    margin-bottom: 5rem;
-    line-height: 1.6;
-    word-break: keep-all; /* 서브 타이틀도 단어 단위로 줄바꿈 */
-}
-
-.primary-button {
-    padding: 18px 50px;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #000000;
-    background-color: #FFFFFF;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); 
-}
-
-.primary-button:hover {
-    background-color: #DDDDDD;
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-}
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    padding: 15vh 24px 8vh; background: #FCFBF8; overflow: hidden; touch-action: none;
+  }
+  
+  .bg-shape {
+    position: absolute; filter: blur(70px); opacity: 0.3; z-index: 0;
+    animation: float 8s infinite alternate ease-in-out;
+  }
+  
+  .shape-blue { width: 300px; height: 300px; background: #3D7CA6; top: -50px; left: -100px; }
+  .shape-beige { width: 250px; height: 250px; background: #D1CCC5; bottom: 100px; right: -80px; animation-delay: -4s; }
+  
+  @keyframes float {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(30px) scale(1.1); }
+  }
+  
+  .home-content { position: relative; z-index: 10; text-align: center; animation: fadeIn 0.8s ease-out; }
+  
+  .logo-box { display: flex; justify-content: center; margin-bottom: 24px; animation: bounceFloat 3s infinite ease-in-out; }
+  .home-logo { width: clamp(90px, 25vw, 140px); filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05)); }
+  
+  @keyframes bounceFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .home-title { font-size: clamp(24px, 6vw, 36px); font-weight: 800; color: #2C2A28; margin: 0 0 12px; letter-spacing: -0.5px; }
+  .home-desc { font-size: clamp(14px, 3.5vw, 16px); color: #6E6961; line-height: 1.6; margin: 0; }
+  
+  .home-btn {
+    position: relative; z-index: 10; width: 100%; max-width: 320px; padding: 18px;
+    font-size: 16px; font-weight: 700; color: #FFFFFF; background: #3D7CA6;
+    border: none; border-radius: 16px; box-shadow: 0 8px 20px rgba(61, 124, 166, 0.25);
+    cursor: pointer; transition: all 0.2s; animation: fadeIn 1s ease-out 0.3s backwards;
+  }
+  
+  .home-btn:active { transform: scale(0.96); }
+  
+  /* 토스트 팝업 스타일 */
+  .exit-toast {
+    position: absolute; bottom: 12%; left: 50%;
+    background: rgba(60, 60, 60, 0.85); color: #FFFFFF;
+    padding: 12px 24px; border-radius: 24px; font-size: 13px; font-weight: 500;
+    white-space: nowrap; z-index: 9999;
+    animation: toastFadeInOut 2s ease-in-out forwards;
+  }
+  
+  @keyframes toastFadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 20px); }
+    15% { opacity: 1; transform: translate(-50%, 0); }
+    85% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -10px); }
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
