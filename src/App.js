@@ -3,21 +3,27 @@ import { HashRouter, Routes, Route, useNavigate, useLocation } from "react-route
 import { App as CapacitorApp } from '@capacitor/app';
 import Home from "./Home";
 import MapPage from "./MapPage";
-import Splash from "./Splash"; // 1. Splash 컴포넌트 불러오기
+import Splash from "./Splash";
 
 function AppData() {
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    let backButtonListener; 
+    let lastTime = 0;
+    let backListener;
 
     const setupListener = async () => {
-      backButtonListener = await CapacitorApp.addListener('backButton', ({ canGoBack }) => {
-        // 스플래시 화면이거나 홈 화면이면 종료
+      // 리스너 비동기 등록
+      backListener = await CapacitorApp.addListener('backButton', () => {
         if (location.pathname === '/' || location.pathname === '/home') {
-          CapacitorApp.exitApp();
-        } else {
+          const now = Date.now();
+          if (now - lastTime < 2000) {
+            CapacitorApp.exitApp();
+          } else {
+            lastTime = now;
+          }
+        } else if (location.pathname !== '/map') {
           navigate(-1);
         }
       });
@@ -26,15 +32,12 @@ function AppData() {
     setupListener();
 
     return () => {
-      if (backButtonListener) {
-        backButtonListener.remove();
-      }
+      if (backListener) backListener.remove();
     };
   }, [navigate, location]);
 
   return (
     <Routes>
-      {/* 2. 첫 화면("/")을 Splash로 변경 */}
       <Route path="/" element={<Splash />} />
       <Route path="/home" element={<Home />} />
       <Route path="/map" element={<MapPage />} />
