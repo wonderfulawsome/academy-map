@@ -156,7 +156,7 @@ export default function App() {
   }, [showFormula, showRanking, bottomSheetMode, selectedDong, navigate]);
 
   useEffect(() => {
-    fetch(`https://wphuvahgmxttmnwvbmfw.supabase.co/storage/v1/object/public/maps/dong_map.geojson?t=${Date.now()}`)
+    fetch(`${process.env.PUBLIC_URL}/dong_map_merged.json`)
       .then(r => r.json())
       .then(data => {
         const academyKeys = new Set();
